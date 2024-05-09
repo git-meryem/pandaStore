@@ -37,20 +37,17 @@ export default function ProductList() {
     event.preventDefault();
 
     const filtredProduct = product.filter(
-      (p) => p.id.toString().includes(search)||
-      p.title.includes(search) ||
-      p.price.toString().includes(search) ||
-      p.description.includes(search)
+      (p) => p.id.toString().includes(search)
+      // p.title.includes(search) ||
+      // p.price.toString().includes(search) ||
+      // p.description.includes(search)
     );
     setFilter(filtredProduct);
   };
 
   const handleCategoryClick = (cat) => {
     const filteredProducts = product.filter(
-      (p) => p.category === cat||
-      p.title.includes(search) ||
-      p.price.toString().includes(search) ||
-      p.description.includes(search) && p.id.toString().includes(search)
+      (p) => p.category === cat && p.id.toString().includes(search)
     );
     setFilter(filteredProducts);
   };
@@ -97,42 +94,49 @@ export default function ProductList() {
   //   };
 
   return (
-
     <div className="container mt-2">
-        <img src={require("./panda_logo-removebg-preview.png")} alt="panda" width={"110px"}/>
-
-    {/* <h4 style={{ color:'#112D4E' , fontWeight:900 , textAlign:"center", textTransform:"uppercase"}}>
-    Panda <span style={{ color:"#3F72AF" }}>Store</span> </h4> */}
+      <img
+        src={require("./panda_logo-removebg-preview.png")}
+        alt="panda"
+        width={"50px"}
+        height={"auto"}
+        style={{ transform: "scale(3)", marginTop:"20px"}}
+      />
       <div className="row mt-0">
-       <div className="col d-flex justify-content-start">
-        <h5
+        <div className="col d-flex justify-content-start">
+          <h5
             style={{
-            fontWeight: 700,
-            margin: "30px",
+              fontWeight: 700,
+              margin: "30px",
             }}
-        >
+          >
             Liste des produits
-        </h5>
+          </h5>
         </div>
 
         <div className="col d-flex justify-content-end">
-            <div style={{display:"flex" , height:"fit-content" ,  alignSelf:"center" }}>
-               
-                <input
-                type="test"
-                id="searchValue"
-                className="form-control"
-                onChange={inputSearchChange}
-                placeholder="search"
-                ></input>
-                <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={submitSearch}
-                >
-                <i class="bi bi-search"></i>
-                </button>
-            </div>
+          <div
+            style={{
+              display: "flex",
+              height: "fit-content",
+              alignSelf: "center",
+            }}
+          >
+            <input
+              type="test"
+              id="searchValue"
+              className="form-control"
+              onChange={inputSearchChange}
+              placeholder="search"
+            ></input>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={submitSearch}
+            >
+              <i class="bi bi-search"></i>
+            </button>
+          </div>
         </div>
       </div>
 
